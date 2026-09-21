@@ -1,0 +1,71 @@
+{
+  "store_uri": "hf://datasets/metasafetybench/metasafetybench-data",
+  "built_at": "2026-07-27T19:16:41.648322+00:00",
+  "orientation": "1 = safe / truthful, 0 = unsafe / untruthful",
+  "datasets": {
+    "harmbench": {
+      "judge": "haiku-anthropic_claude-haiku-4.5",
+      "flip": true,
+      "n_models": 192,
+      "n_items": 300,
+      "source_fingerprint": "da9610ec241d28ea",
+      "path": "matrix_harmbench.parquet"
+    },
+    "advbench": {
+      "judge": "refusal-strings",
+      "flip": true,
+      "n_models": 187,
+      "n_items": 520,
+      "source_fingerprint": "c40f96b6a0074931",
+      "path": "matrix_advbench.parquet"
+    },
+    "donotanswer": {
+      "judge": "longformer-action-ro",
+      "flip": true,
+      "n_models": 187,
+      "n_items": 939,
+      "source_fingerprint": "c1c60c08d3d47d13",
+      "path": "matrix_donotanswer.parquet"
+    },
+    "truthfulqa": {
+      "judge": "bleurt-20",
+      "flip": false,
+      "n_models": 187,
+      "n_items": 817,
+      "source_fingerprint": "16c11f2087a3c9d8",
+      "path": "matrix_truthfulqa.parquet"
+    },
+    "sorrybench": {
+      "judge": "ft-mistral-7b-sorrybench",
+      "flip": true,
+      "n_models": 179,
+      "n_items": 440,
+      "source_fingerprint": "9e53b5f4ea89ba84",
+      "path": "matrix_sorrybench.parquet"
+    },
+    "orbench_hard": {
+      "judge": "orbench-refusal",
+      "flip": true,
+      "n_models": 178,
+      "n_items": 1319,
+      "source_fingerprint": "0066cbc9bc1e9f8e",
+      "path": "matrix_orbench_hard.parquet"
+    },
+    "ahb": {
+      "judge": null,
+      "flip": true,
+      "n_models": 172,
+      "n_items": 720,
+      "source_fingerprint": "e6ebc65a79aae8a5",
+      "path": "matrix_ahb.parquet"
+    },
+    "health_orsc": {
+      "judge": null,
+      "flip": true,
+      "n_models": 172,
+      "n_items": 200,
+      "source_fingerprint": "b6f372dbc7a4c746",
+      "path": "matrix_health_orsc.parquet"
+    }
+  }
+}
