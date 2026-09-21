@@ -14,8 +14,11 @@ Sources (the battery/ folder is intentionally never read):
   - scores/<dataset>/<model>[.judge].jsonl -> score + label
 
 Output (written to sample_battery/):
-  - items.jsonl      one line per question: item_id, dataset, prompt
-  - responses.jsonl  one line per (question, model): item_id, model, score, label
+  - items.jsonl      one line per question: question_id, dataset, question_text
+  - responses.jsonl  one line per (question, model): question_id, model, score, label
+
+Field names follow what the downstream annotation tooling expects
+(question_id, question_text as the minimum required fields).
 """
 
 import json
@@ -165,7 +168,11 @@ def main() -> None:
         prompts = load_prompts(dataset, item_id_set)
         for item_id in item_ids:
             items_out.append(
-                {"item_id": item_id, "dataset": dataset, "prompt": prompts[item_id]}
+                {
+                    "question_id": item_id,
+                    "dataset": dataset,
+                    "question_text": prompts[item_id],
+                }
             )
 
         for model in MODELS:
@@ -179,7 +186,7 @@ def main() -> None:
                 score, label = scores[item_id]
                 responses_out.append(
                     {
-                        "item_id": item_id,
+                        "question_id": item_id,
                         "model": model,
                         "score": score,
                         "label": label,

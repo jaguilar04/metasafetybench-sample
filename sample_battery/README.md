@@ -66,15 +66,15 @@ is also available in `scores/harmbench/`.
 
 | Field | Meaning |
 | --- | --- |
-| `item_id` | Original item identifier (also encodes the dataset prefix, e.g. `ahb_0139`). |
+| `question_id` | Original item identifier (also encodes the dataset prefix, e.g. `ahb_0139`). Named `question_id` (rather than `item_id`) because that's the minimum field the downstream annotation tooling expects. |
 | `dataset` | Which of the 8 benchmarks this question is from. |
-| `prompt` | The question text, taken from `responses/<dataset>/<model>.jsonl` (prompts are identical across models for the same item). |
+| `question_text` | The question text, taken from `responses/<dataset>/<model>.jsonl` (prompts are identical across models for the same item). Named `question_text` for the same annotation-tooling reason as `question_id`. |
 
 ### `responses.jsonl` — 2000 lines, one per (question, model) pair
 
 | Field | Meaning |
 | --- | --- |
-| `item_id` | Matches an `item_id` in `items.jsonl`. |
+| `question_id` | Matches a `question_id` in `items.jsonl`. |
 | `model` | One of the 10 selected models. |
 | `score` | Binary judged outcome for this model's response to this item (`0.0`/`1.0`), taken from `scores/<dataset>/<model>.jsonl`. |
 | `label` | The judge's raw label before it was collapsed to a binary score (e.g. `"refused"`/`"complied"`, `"yes"`/`"no"`, or, for Do-Not-Answer, a 6-way action category `"0"`–`"5"`). |
@@ -87,8 +87,8 @@ Each item has exactly 10 responses (one per model), so
 ```
 matrices/manifest.json         -> per-benchmark item counts (for the 200-item split)
 matrices/matrix_<dataset>.parquet -> which (model, item) pairs have a judged score
-responses/<dataset>/<model>.jsonl -> item_id, prompt
-scores/<dataset>/<model>[.judge].jsonl -> item_id, model, score, label
+responses/<dataset>/<model>.jsonl -> question_id (item_id), question_text (prompt)
+scores/<dataset>/<model>[.judge].jsonl -> question_id (item_id), model, score, label
 ```
 
 `battery/` is intentionally excluded from this pipeline.
